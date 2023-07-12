@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import {  useNavigate } from "react-router-dom";
 let backendurl = "https://new-blogsite.vercel.app";
 
@@ -7,7 +8,7 @@ function Register() {
     const navigate = useNavigate();
 
     useEffect(() => {
-      if (localStorage.getItem("token")) navigate(`/welcome`);
+      if (localStorage.getItem("token")) navigate(`/`);
     }, []);
 
     const [user, setUser] = useState({
@@ -25,7 +26,7 @@ function Register() {
       e.preventDefault();
       const { name,  email, password } = user;
         try {
-          const res = await axios.post(`${backendurl}/register`, {
+          const res = await axios.post(`${backendurl}/createuser`, {
             name,
             email,
             password,
@@ -92,6 +93,7 @@ function Register() {
                   <button type="submit">Register</button>
                 </React.Fragment>
             </form>
+            <p>Already have account?<span onClick={()=>navigate('/login')}>Login</span></p>
     </div>
   )
 }

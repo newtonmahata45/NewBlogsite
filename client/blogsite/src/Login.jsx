@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 let backendurl = "https://new-blogsite.vercel.app";
 
 function Login() {
+    const navigate = useNavigate();
     const [eye, setEye] = useState(true);
 
     const [user, setUser] = useState({email: "", password: "",});
@@ -10,19 +13,24 @@ function Login() {
     const handleEye = () => {
         setEye(!eye);
       };
-    async function submit() {
+    async function submit(e) {
+      e.preventDefault();
+      const {email,password} = user;
         try {
-          const res = await axios.post(`${backendurl}/login`, { email, password });
+          const res = await axios.post(`${backendurl}/login`, { email, password});
   
           console.log("login responce=>", res);
-          if (res.data.token) {
-            localStorage.setItem("token", res.data.token);
-            window.alert("login successfull");
+          if (res.data.data.token) {
+            localStorage.setItem("token", res.data.data.token);
+            window.alert(res.data.message);
             navigate(`/`);
+          }
+          else{
+            console.log("adfsklj")
           }
         } catch (err) {
           console.log("the login error =>", err);
-          err.response ? window.alert(err.response.data.message): window.alert(err.message);
+          // err.response ? window.alert(err.response.data.message): window.alert(err.message);
         }
     }
 
@@ -56,13 +64,13 @@ function Login() {
                         required
                       />
                       <i
-                        className={eye ? "fa fa-eye-slash" : "fa fa-eye"}
                         onClick={handleEye}
-                      ></i>
+                      >i</i>
                     </div>
                   <button type="submit">Log In </button>
                 </React.Fragment>
         </form>
+        <p>Don't have account?<span onClick={()=>navigate('/register')}>Register</span></p>
     </div>
   )
 }

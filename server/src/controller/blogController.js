@@ -18,7 +18,8 @@ const createBlog = async function (req, res) {
             return res.status(404).send({ status: false, message: "This user is not found" })
         }
         //  Create : aws link for profile image
-        if(blogFile){
+	console.log(blogFile)
+        if(blogFile.length){
         var uploadedFileURL = await aws.uploadFile(blogFile[0])
 
         blogs.blogFile = uploadedFileURL;

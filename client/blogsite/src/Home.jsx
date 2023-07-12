@@ -27,13 +27,13 @@ function Home() {
     return (
         <div>
             <nav className="navbar">
-                {token ? <div>User</div> : <div><button onClick={()=>navigate(`/register`)}  >Register</button>
+                {token ? <button onClick={()=>localStorage.removeItem("token")}>Log out</button> : <div><button onClick={()=>navigate(`/register`)}  >Register</button>
                     <button onClick={()=>navigate(`/login`)}>Login</button></div>}
 
             </nav>
             <main>
                 {allblogs.map((each)=>{
-                    return (<div key={each._id} style={{border:"2px solid tomato"}} onClick={()=>navigate(`/blogs/${each._id}`)} >{each.title}</div>)
+                    return (<div key={each._id} style={{border:"2px solid tomato"}} onClick={()=>navigate(`/blogpage/${each._id}`,{state:each})} >{each.title}</div>)
                 })}
             </main>
 
