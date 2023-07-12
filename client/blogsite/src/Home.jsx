@@ -13,8 +13,9 @@ function Home() {
 
     const navigate = useNavigate();
     async  function getblogs() {
-        let blogs =  await axios.get(`${backendurl}/blogs`)
-        setAllblogs(blogs);
+        let {data} =  await axios.get(`${backendurl}/blogs`)
+        console.log(data)
+        setAllblogs(data.data);
     }
     useEffect(() => {
         if(localStorage.getItem("token")){
@@ -26,13 +27,13 @@ function Home() {
     return (
         <div>
             <nav className="navbar">
-                {token ? <div></div> : <div><button onClick={()=>navigate(`/register`)}  >Register</button>
+                {token ? <div>User</div> : <div><button onClick={()=>navigate(`/register`)}  >Register</button>
                     <button onClick={()=>navigate(`/login`)}>Login</button></div>}
 
             </nav>
             <main>
                 {allblogs.map((each)=>{
-                    return <div>{each.title}</div>
+                    return (<div key={each._id} style={{border:"2px solid tomato"}} onClick={()=>navigate(`/blogs/${each._id}`)} >{each.title}</div>)
                 })}
             </main>
 

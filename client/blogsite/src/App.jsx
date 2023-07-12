@@ -14,7 +14,7 @@ function App() {
           <Route path='/' Component = {Home}  />
           <Route path='/register' Component = { Register } />
           <Route path='/login' Component = { Login } />
-          <Route path='/blogpage' Component = { Blogpage } />
+          <Route path='/blogpage/:id' Component = { Blogpage } />
         </Routes>
     </BrowserRouter>
     </>
