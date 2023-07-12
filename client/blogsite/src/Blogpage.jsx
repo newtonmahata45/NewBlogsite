@@ -17,13 +17,11 @@ function Blogpage() {
           navigate(`/register`)
       }
       else{
-          setComponent(true) 
+        navigate('/creatblog') 
       }
   }
   return (
     <div>
-        {component ? <Createbog/>
-        :
         <React.Fragment>
         <div className="theblog">
         <h2>{location.state.title}</h2>
@@ -35,7 +33,6 @@ function Blogpage() {
             <button>Edit this blog</button>
         </div>
         </React.Fragment>
-        }
     </div>
   )
 }

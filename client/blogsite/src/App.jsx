@@ -5,6 +5,7 @@ import Register from './Register'
 import Login from './Login'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Blogpage from './Blogpage'
+import Createbog from './Createbog'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/register' Component = { Register } />
           <Route path='/login' Component = { Login } />
           <Route path='/blogpage/:id' Component = { Blogpage } />
+          <Route path='/creatblog' Component = { Createbog } />
         </Routes>
     </BrowserRouter>
     </>
