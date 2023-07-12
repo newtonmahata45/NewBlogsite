@@ -13,7 +13,7 @@ router.post("/login", login)
 
 router.post("/blogs", authenticate, createBlog) //create Blog
 
-router.get("/blogs", authenticate, getFilteredBlog) // get by filter Blog
+router.get("/blogs", getFilteredBlog) // get by filter Blog
 
 router.put("/blogs/:blogId", authenticate, authorisation, putBlog) // update data
 
