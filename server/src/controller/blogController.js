@@ -59,7 +59,7 @@ const putBlog = async function (req, res) {
         if(blogFile){
             var uploadedFileURL = await aws.uploadFile(blogFile[0])
 
-            blogs.blogFile = uploadedFileURL;
+            body.blogFile = uploadedFileURL;
         }
         let updateblog = await blogModel.findOneAndUpdate({ _id: blogId}, { $set: {...body} },{new:true})
         return res.status(200).send({status: true, message:"Blog Updated Successfully",data: updateblog })

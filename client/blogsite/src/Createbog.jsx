@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 let backendurl = "https://new-blogsite.vercel.app";
                 //'http://localhost:3001'
-function Createbog() {
+function Createblog() {
     const navigate = useNavigate();
     const [blog, setBlog] = useState({});
     const decoded = jwt_decode(localStorage.getItem("token"));
@@ -16,7 +16,7 @@ function Createbog() {
         formData.append("title",blog.title);
         formData.append("description",blog.description);
         if(blog.blogFile && blog.blogFile.length){
-            formData.append("blogFile",blog.blogFile[0]);
+          formData.append("blogFile",blog.blogFile[0]);
         }
         formData.append("userId",decoded.userId);
         
@@ -76,4 +76,4 @@ function Createbog() {
   )
 }
 
-export default Createbog
+export default Createblog
