@@ -2,8 +2,8 @@ import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-let backendurl = // "https://new-blogsite.vercel.app";
-                  'http://localhost:3001';
+let backendurl =  "https://new-blogsite.vercel.app";
+                 // 'http://localhost:3001';
 function Blogpage() {
   let navigate = useNavigate();
   const location = useLocation();
