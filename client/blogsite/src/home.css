@@ -28,17 +28,16 @@ body {
   }
   
   main {
-    font-family: "Quicksand", sans-serif;
     display: flex;
     place-items: center;
     flex-wrap: wrap;
-    /* height: 100vh; */
     background: #7f7fd5;
     background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
     justify-content: center;
     max-width: 1200px;
     padding-top: 2rem;
     gap: 2rem;
+    border: 2px solid #333;
   }
 
 .card {

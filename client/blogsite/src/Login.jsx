@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import "./login.css"
 let backendurl = "https://new-blogsite.vercel.app";
 
 function Login() {
@@ -41,10 +42,10 @@ function Login() {
         console.log(newUser);
       }
   return (
-    <div>
-         <form className="form" onSubmit={(e) => submit(e)}>
+    <div className='body2'>
+         <form className="form2" onSubmit={(e) => submit(e)}>
        <React.Fragment>
-                    <div className="input">
+                    <div className="input1">
                       <input
                         onChange={(e) => handle(e)}
                         value={user.email}
@@ -54,7 +55,7 @@ function Login() {
                         required
                       />
                     </div>
-                    <div className="input">
+                    <div className="input1">
                       <input
                         onChange={(e) => handle(e)}
                         value={user.password}
@@ -70,7 +71,9 @@ function Login() {
                   <button type="submit">Log In </button>
                 </React.Fragment>
         </form>
-        <p>Don't have account?<span onClick={()=>navigate('/register')}>Register</span></p>
+        <div className='para'>
+        <p >Don't have account?</p><span onClick={()=>navigate('/register')} className='reg-btn'>Register</span>
+        </div>
     </div>
   )
 }

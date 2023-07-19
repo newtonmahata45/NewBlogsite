@@ -1,0 +1,101 @@
+/* newPageStyles.css */
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+  .form1 {
+    background-color: #fff;
+    padding: 20px;
+    padding-right: 35px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form1 .inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form1 .inputs .input {
+    margin-bottom: 15px;
+  }
+  
+  .form1 .inputs .input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form1 .inputs .input i {
+    position: relative;
+    left: -25px;
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .form1 button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .form1 button:hover {
+    background-color: #0056b3;
+  }
+  
+  .form1 p {
+    margin-top: 15px;
+    text-align: center;
+    color: #666;
+  }
+  
+  .form1 p span {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .form1 p span:hover {
+    text-decoration: underline;
+  }
+  
+  /* styles.css */
+
+/* Styling for the container */
+.para {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+    background-color: #f9f9f9;
+  }
+  
+  /* Styling for the paragraph */
+  .para p {
+    font-size: 16px;
+    color: #666;
+    margin-right: 10px;
+  }
+  
+  /* Styling for the "Register" link */
+  .para .reg-btn {
+    font-size: 16px;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .para .reg-btn:hover {
+    text-decoration: underline;
+  }
+  
