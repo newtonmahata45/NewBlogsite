@@ -80,23 +80,27 @@ body {
     height: 250px;
   }
   
-  
   .card__body {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    justify-content: space-around;
+    /* gap: .5rem;  */
+    height: 100px;
+    overflow: hidden;
   }
-  
-  
-  .tag {
-    align-self: flex-start;
-    padding: .25em .75em;
-    border-radius: 1em;
-    font-size: .75rem;
+  .card__body span{
+    text-align: end;
+    font-weight: bold;
+    color: #fc7c7c;
   }
-  
+  .card__body .date{
+    text-align: start;
+    padding-right: 10px;
+    color: #666;
+  }
   .card__body h4 {
+    /* padding-top: 20px; */
+    margin-top: 10px;
     font-size: 1.5rem;
     text-transform: capitalize;
   }

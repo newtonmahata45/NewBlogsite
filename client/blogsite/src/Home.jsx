@@ -61,13 +61,14 @@ function Home() {
                 </div>
                 <div className="card__body">
                   <h4>{each.title}</h4>
-                  <span>{each.createdAt.toDateString()}</span>
+                  <span>-- {each.userId.name}</span>
+                  <span className="date"><b>{(new Date(each.createdAt)).toDateString()}</b></span>
                 </div>
               </div>
               </div>
           );
         })}
-      </main>
+      </main> 
     </div>
   );
 }
