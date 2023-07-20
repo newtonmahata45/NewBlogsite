@@ -1,8 +1,9 @@
 const aws = require("aws-sdk");
+require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
 aws.config.update({
-    accessKeyId: "AKIAY3L35MCRZNIRGT6N",
-    secretAccessKey: "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",
+    accessKeyId: process.env.ACCESSKEYID,
+    secretAccessKey: process.env.SECRETACCESSKEY,
     region: "ap-south-1"
 })
 let uploadFile = async (file) => {

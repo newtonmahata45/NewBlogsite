@@ -22,7 +22,7 @@ function Blogpage() {
   let auth = false;
   if (localStorage.getItem("token")) {
     const decoded = jwt_decode(localStorage.getItem("token"));
-    auth = decoded.userId == location.state.userId;
+    auth = decoded.userId == location.state.userId._id;
   }
 
   async function submit(e) {
@@ -69,7 +69,7 @@ function Blogpage() {
       {!edit ? (
         <React.Fragment>
           <div className="theblog">
-            <h2>{location.state.title}</h2>
+            <h2>{location.state.title}</h2><span>by {location.state.userId.name}</span>
             <p>{location.state.description}</p>
             <img src={location.state.blogFile} />
           </div>

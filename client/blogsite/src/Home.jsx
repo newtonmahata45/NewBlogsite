@@ -61,7 +61,7 @@ function Home() {
                 </div>
                 <div className="card__body">
                   <h4>{each.title}</h4>
-                  {/* <p>{each.description}</p> */}
+                  <span>{each.createdAt.toDateString()}</span>
                 </div>
               </div>
               </div>
