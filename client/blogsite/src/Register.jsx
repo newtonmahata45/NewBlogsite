@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./reg.css";
-let backendurl = "https://new-blogsite.vercel.app";
-
+import LoadingSpinner from "./LodingSpnner";
+let backendurl =  "https://new-blogsite.vercel.app";
 function Register() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) navigate(`/`);
@@ -25,12 +26,14 @@ function Register() {
     e.preventDefault();
     const { name, email, password } = user;
     try {
+      setIsLoading(true);
       const res = await axios.post(`${backendurl}/createuser`, {
         name,
         email,
         password,
       });
 
+      setIsLoading(false);
       if (res.status == 201) {
         window.alert(res.data.message);
         navigate("/login");
@@ -38,6 +41,7 @@ function Register() {
         window.alert(err.response.data.message);
       }
     } catch (err) {
+      setIsLoading(false);
       console.log("the signup error =>", err);
       err.response
         ? window.alert(err.response.data.message)
@@ -53,50 +57,54 @@ function Register() {
   }
   return (
     <div className="body">
-      <form className="form1" onSubmit={(e) => submit(e)}>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
         <React.Fragment>
-          <div className="inputs">
-            <div className="input">
-              <input
-                onChange={(e) => handle(e)}
-                value={user.name}
-                type="text"
-                placeholder="Full Name"
-                id="name"
-                required
-              />
+          <form className="form1" onSubmit={(e) => submit(e)}>
+            <div className="inputs">
+              <div className="input">
+                <input
+                  onChange={(e) => handle(e)}
+                  value={user.name}
+                  type="text"
+                  placeholder="Full Name"
+                  id="name"
+                  required
+                />
+              </div>
+              <div className="input">
+                <input
+                  onChange={(e) => handle(e)}
+                  value={user.email}
+                  type="email"
+                  placeholder="Email"
+                  id="email"
+                  required
+                />
+              </div>
+              <div className="input">
+                <input
+                  onChange={(e) => handle(e)}
+                  value={user.password}
+                  type={eye ? "password" : "text"}
+                  placeholder="Password"
+                  id="password"
+                  required
+                />
+                <i onClick={handleEye}>i</i>
+              </div>
             </div>
-            <div className="input">
-              <input
-                onChange={(e) => handle(e)}
-                value={user.email}
-                type="email"
-                placeholder="Email"
-                id="email"
-                required
-              />
-            </div>
-            <div className="input">
-              <input
-                onChange={(e) => handle(e)}
-                value={user.password}
-                type={eye ? "password" : "text"}
-                placeholder="Password"
-                id="password"
-                required
-              />
-              <i onClick={handleEye}>i</i>
-            </div>
+            <button type="submit">Register</button>
+          </form>
+          <div className="para">
+            <p>Already have account?</p>
+            <span onClick={() => navigate("/login")} className="reg-btn">
+              Login
+            </span>
           </div>
-          <button type="submit">Register</button>
         </React.Fragment>
-      </form>
-      <div className="para">
-        <p>Already have account?</p>
-        <span onClick={() => navigate("/login")} className="reg-btn">
-          Login
-        </span>
-      </div>
+      )}
     </div>
   );
 }

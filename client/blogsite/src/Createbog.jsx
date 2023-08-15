@@ -2,11 +2,13 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-let backendurl = "https://new-blogsite.vercel.app";
-//'http://localhost:3001'
+import LoadingSpinner from "./LodingSpnner";
+let backendurl = "https://new-blogsite.vercel.app"; 
+                 // 'http://localhost:3001'
 function Createblog() {
   const navigate = useNavigate();
   const [blog, setBlog] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const decoded = jwt_decode(localStorage.getItem("token"));
 
   async function submit(e) {
@@ -18,7 +20,7 @@ function Createblog() {
       formData.append("blogFile", blog.blogFile[0]);
     }
     formData.append("userId", decoded.userId);
-
+    setIsLoading(true);
     axios
       .post(`${backendurl}/blogs`, formData, {
         headers: {
@@ -28,11 +30,12 @@ function Createblog() {
       })
       .then(function (res) {
         console.log(res);
+        setIsLoading(false)
         window.alert(res.data.message);
         navigate(`/blogpage/${res.data.data._id}`, { state: res.data.data });
       })
       .catch(function (err) {
-        //   window.alert(err.response.data.message)
+          // window.alert(err.response.data.message)
         console.log(err);
       });
   }
@@ -46,6 +49,7 @@ function Createblog() {
   }
   return (
     <div>
+      {isLoading ?<LoadingSpinner/>:
       <form className="form" onSubmit={(e) => submit(e)}>
         <span>Title: </span>
         <input
@@ -74,7 +78,7 @@ function Createblog() {
         />
         <br />
         <button type="submit">Create</button>
-      </form>
+      </form>}
     </div>
   );
 }

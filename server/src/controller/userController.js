@@ -15,7 +15,11 @@ const createUser = async (req, res) => {
         if (!name) { return res.status(400).send({ status: false, message: "name is mandatory" }) }
         if (!email) { return res.status(400).send({ status: false, message: "email is mandatory" }) }
         if (!password) { return res.status(400).send({ status: false, message: "password is mandatory" }) }
+        let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/;
+        if (!(emailRegex.test(email))) { return res.status(400).send({ status: false, message: "email is not valid" }) }
 
+        let passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/;
+        if (!(passwordRegex.test(password))) { return res.status(400).send({ status: false, message: "Choose a Strong Password, Use a mix of letters (uppercase and lowercase), numbers, and symbols in between 8-15 characters" }) }
 
         email = data.email = data.email.toLowerCase()
         const isEmailAlreadyUsed = await userModel.findOne({ email: email })
@@ -46,7 +50,6 @@ let login = async function (req, res) {
         if (email.trim().length == 0 || password.trim().length == 0) {
             return res.status(400).send({ status: false, message: "both fields are required." })
         }
-
         let userDetail = await userModel.findOne({ email: email })
         if (!userDetail) {
             return res.status(404).send({ status: false, message: "User not found with this EmailId" })

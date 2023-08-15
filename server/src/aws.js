@@ -1,9 +1,10 @@
 const aws = require("aws-sdk");
+require("dotenv").config();
 require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
 aws.config.update({
     accessKeyId: process.env.ACCESSKEYID,
-    secretAccessKey: process.env.SECRETACCESSKEY,
+    secretAccessKey:  process.env.SECRETACCESSKEY,
     region: "ap-south-1"
 })
 let uploadFile = async (file) => {

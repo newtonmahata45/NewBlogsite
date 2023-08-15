@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
 
-let backendurl = "https://new-blogsite.vercel.app";
+let backendurl =  "https://new-blogsite.vercel.app"; 
+                 // 'http://localhost:3001';
 
 function Home() {
   const [allblogs, setAllblogs] = useState([]);
